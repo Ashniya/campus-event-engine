@@ -1,0 +1,14 @@
+.shuffle-parent {
+  display: inline-block;
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+
+.shuffle-parent.is-ready {
+  visibility: visible;
+}
+
+.shuffle-char {
+  display: inline-block;
+  position: relative;
+}
