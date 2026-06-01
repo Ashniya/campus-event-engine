@@ -4,6 +4,8 @@ pipeline {
     environment {
         // Defines the name for the docker-compose project to avoid conflicts
         COMPOSE_PROJECT_NAME = 'campus-event-engine'
+        // Pulls the MongoDB connection string securely from Jenkins Credentials
+        MONGO_URI = credentials('MONGO_URI')
     }
 
     stages {
