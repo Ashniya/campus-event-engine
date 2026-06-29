@@ -29,7 +29,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     // Fix Windows OpenSSH private key permissions (Warning: UNPROTECTED PRIVATE KEY FILE!)
-                    bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /grant:r "%USERNAME%:F" /grant:r "SYSTEM:F" /c'
+                    bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /grant:r "SYSTEM:F" /c'
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /inheritance:r /c'
                     
                     // 1. Ensure the destination directory exists on AWS and install docker if needed
@@ -48,7 +48,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     // Fix Windows OpenSSH private key permissions
-                    bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /grant:r "%USERNAME%:F" /grant:r "SYSTEM:F" /c'
+                    bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /grant:r "SYSTEM:F" /c'
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /inheritance:r /c'
                     
                     // Lists the running containers on AWS to verify they started successfully
