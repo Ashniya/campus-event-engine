@@ -32,14 +32,8 @@ pipeline {
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /grant:r "SYSTEM:F" /c'
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /inheritance:r /c'
                     
-                    // 1. Ensure the destination directory exists on AWS and install docker if needed
-                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "mkdir -p ~/campus-event-engine && sudo apt-get update && sudo apt-get install -y docker.io docker-compose"'
-                    
-                    // 2. Copy your project files to the AWS server
-                    bat '"C:\\Windows\\System32\\OpenSSH\\scp.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no -r ./* %SSH_USER%@51.20.73.168:/home/ubuntu/campus-event-engine'
-                    
-                    // 3. Start the Docker containers on AWS
-                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "cd ~/campus-event-engine && sudo docker-compose down && sudo docker-compose up -d --build"'
+                    // Connect to AWS, install Docker & Git, clone/pull the latest code directly from GitHub, and start containers!
+                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "sudo apt-get update && sudo apt-get install -y docker.io docker-compose git && mkdir -p ~/campus-event-engine && cd ~/campus-event-engine && (git clone https://github.com/Ashniya/campus-event-engine.git . || git pull origin main) && sudo docker-compose down && sudo docker-compose up -d --build"'
                 }
             }
         }
