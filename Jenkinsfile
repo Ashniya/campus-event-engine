@@ -32,8 +32,8 @@ pipeline {
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /grant:r "SYSTEM:F" /c'
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /inheritance:r /c'
                     
-                    // Connect to AWS, install Docker & Git, clone/pull the latest code directly from GitHub, and start containers!
-                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "sudo apt-get update && sudo apt-get install -y docker.io docker-compose git && mkdir -p ~/campus-event-engine && cd ~/campus-event-engine && (git clone https://github.com/Ashniya/campus-event-engine.git . || git pull origin main) && sudo docker-compose down && sudo docker-compose up -d --build"'
+                    // Connect to AWS, install Docker & Git, do a fresh git clone directly from GitHub, and start containers!
+                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "sudo apt-get update && sudo apt-get install -y docker.io docker-compose git && cd ~ && rm -rf ~/campus-event-engine && git clone https://github.com/Ashniya/campus-event-engine.git && cd ~/campus-event-engine && sudo docker-compose down && sudo docker-compose up -d --build"'
                 }
             }
         }
