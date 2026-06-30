@@ -11,18 +11,30 @@ const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:5174',
     'http://localhost:5175',
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174'
 ];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || origin.startsWith('http://localhost:')) {
+        // Allow localhost, 127.0.0.1, and the AWS Public IP (51.20.73.168)
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:') || origin.startsWith('http://51.20.73.168:')) {
             return callback(null, true);
         }
         return callback(new Error('Not allowed by CORS'));
     },
     credentials: true
 }));
+
+// Prevent browser caching of API responses
+app.use((req, res, next) => {
+    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.header('Pragma', 'no-cache');
+    res.header('Expires', '0');
+    next();
+});
+
 app.use(express.json());
 app.use(cookieParser());
 
