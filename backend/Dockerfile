@@ -14,5 +14,5 @@ COPY . .
 # Expose the API port
 EXPOSE 5000
 
-# Start the application with nodemon for hot-reloading
-CMD ["npx", "nodemon", "server.js"]
+# Start the application in production mode
+CMD ["node", "server.js"]
