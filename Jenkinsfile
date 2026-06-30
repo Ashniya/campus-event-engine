@@ -33,7 +33,7 @@ pipeline {
                     bat '"C:\\Windows\\System32\\icacls.exe" "%SSH_KEY%" /inheritance:r /c'
                     
                     // Connect to AWS, install Docker & Git, do a fresh git clone, inject MongoDB credentials, and start containers!
-                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "sudo apt-get update && sudo apt-get install -y docker.io docker-compose git && cd ~ && rm -rf ~/campus-event-engine && git clone https://github.com/Ashniya/campus-event-engine.git && cd ~/campus-event-engine && echo MONGO_URI=%MONGO_URI% > .env && sudo docker-compose down && sudo docker-compose up -d --build"'
+                    bat '"C:\\Windows\\System32\\OpenSSH\\ssh.exe" -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@51.20.73.168 "sudo apt-get update && sudo apt-get install -y docker.io docker-compose git && cd ~ && rm -rf ~/campus-event-engine && git clone https://github.com/Ashniya/campus-event-engine.git && cd ~/campus-event-engine && echo MONGO_URI=\'%MONGO_URI%\' > .env && sudo docker-compose down && sudo docker-compose up -d --build"'
                 }
             }
         }
