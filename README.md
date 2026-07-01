@@ -1,3 +1,5 @@
+<img width="959" height="407" alt="Screenshot 2026-07-01 152001" src="https://github.com/user-attachments/assets/4de93d7b-0c5b-4d3c-9d82-d261c5cf5dad" />
+<img width="956" height="505" alt="Screenshot 2026-07-01 153509" src="https://github.com/user-attachments/assets/4d8e7ddc-1aff-41b8-8801-42b09ce04690" />
 # 🎓 Campus Event Engine
 
 [![Deployment Status](https://img.shields.io/badge/Deployment-AWS_EC2-FF9900?logo=amazonaws)](http://51.20.73.168:5173)
